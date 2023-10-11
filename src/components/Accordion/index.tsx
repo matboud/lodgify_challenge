@@ -1,14 +1,34 @@
 import React, { FC } from "react";
 import Image from "next/image";
 
+interface Task {
+  description: string;
+  value: number;
+  checked: boolean;
+}
+
 interface AccordionProps {
   first?: boolean;
   last?: boolean;
-  isOpen?: boolean;
+  isOpen: boolean;
+  toggle: (id: number) => void;
+  id: number;
+  groupedTasks: {
+    name: string;
+    tasks: Task[];
+  };
+  handleTask: (id: number, index: number) => void;
 }
 
-const Accordion: FC<AccordionProps> = ({ first, last, isOpen, toggle, id }) => {
-  // generating the conditional classes
+const Accordion: FC<AccordionProps> = ({
+  first = false,
+  last = false,
+  isOpen,
+  toggle,
+  id,
+  groupedTasks,
+  handleTask,
+}) => {
   const borderTopClass = first
     ? "border-t-[1px] rounded-t-md"
     : "border-t-[1px]";
@@ -26,7 +46,9 @@ const Accordion: FC<AccordionProps> = ({ first, last, isOpen, toggle, id }) => {
             height={13}
             alt="Clipboard checklist"
           />
-          <div className="pl-3 text-gray-600 font-light">Group 1</div>
+          <div className="pl-3 text-gray-600 font-light">
+            {groupedTasks.name}
+          </div>
         </div>
 
         <div
@@ -45,19 +67,24 @@ const Accordion: FC<AccordionProps> = ({ first, last, isOpen, toggle, id }) => {
           />
         </div>
       </div>
-      
+
       {isOpen && (
         <div className="pl-6 pb-4 text-xs text-gray-600">
-          <div className="flex items-center w-full py-2">
-            <input
-              id="comments"
-              aria-describedby="comments-description"
-              name="name"
-              type="checkbox"
-              className="h-4 w-4 rounded border-gray-300 text-teal-500 focus:ring-0"
-            />
-            <div className="pl-2">Task 2-1</div>
-          </div>
+          {groupedTasks.tasks.map((task, index) => (
+            <div key={index} className="flex items-center w-full py-2">
+              <input
+                aria-describedby="task"
+                name={task.description}
+                type="checkbox"
+                checked={task.checked}
+                className="h-4 w-4 rounded border-gray-300 text-teal-500 focus:ring-0"
+                onChange={() => handleTask(id, index)}
+              />
+              <div className="pl-2">
+                {`${task.description} (${task.value})`}
+              </div>
+            </div>
+          ))}
         </div>
       )}
     </div>

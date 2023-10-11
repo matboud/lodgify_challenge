@@ -1,12 +1,19 @@
 import React from "react";
 
-const ProgressBar = () => {
+interface ProgressBarProps {
+  progress: number;
+}
+
+const ProgressBar: React.FC<ProgressBarProps> = ({ progress }) => {
   return (
-    <div className={`w-full h-5 bg-teal-50 rounded-full`}>
+    <div className="w-full h-5 bg-teal-50 rounded-full">
       <div
-        className={`h-full w-[75%] bg-teal-500 rounded-full flex items-center justify-end text-white text-xs pr-3`}
+        className="duration-700 ease-in-out h-full bg-teal-500 rounded-full flex items-center justify-end text-xs pr-3 overflow-hidden text-white"
+        style={{
+          width: `${progress}%`,
+        }}
       >
-        75%
+        {Math.floor(progress)}%
       </div>
     </div>
   );
