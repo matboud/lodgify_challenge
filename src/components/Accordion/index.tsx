@@ -34,9 +34,15 @@ const Accordion: FC<AccordionProps> = ({
     : "border-t-[1px]";
   const borderBottomClass = last ? "border-b-[1px] rounded-b-md" : "";
 
+  const areAllTasksChecked = () => {
+    return groupedTasks.tasks.every((task) => task.checked);
+  };
+
   return (
     <div
-      className={`border-l-[1px] border-r-[1px] ${borderTopClass} ${borderBottomClass}`}
+      className={`border-l-[1px] border-r-[1px] ${borderTopClass} ${borderBottomClass} ${
+        areAllTasksChecked() ? "bg-green-100" : ""
+      }`}
     >
       <div className={`py-6 px-4 text-sm flex items-center `}>
         <div className="flex w-full items-center">
@@ -63,7 +69,7 @@ const Accordion: FC<AccordionProps> = ({
             width={25}
             height={25}
             alt="Clipboard checklist"
-            className={`${!isOpen && " -rotate-180"}`}
+            className={`duration-100 ease-in-out ${isOpen && "-rotate-180"}`}
           />
         </div>
       </div>
