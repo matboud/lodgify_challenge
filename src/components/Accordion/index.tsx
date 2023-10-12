@@ -40,7 +40,7 @@ const Accordion: FC<AccordionProps> = ({
 
   return (
     <div
-      className={`border-l-[1px] border-r-[1px] ${borderTopClass} ${borderBottomClass} ${
+      className={` duration-300 ease-in border-l-[1px] border-r-[1px] ${borderTopClass} ${borderBottomClass} ${
         areAllTasksChecked() ? "bg-green-100" : ""
       }`}
     >
