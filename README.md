@@ -2,6 +2,9 @@
 
 Lodgify Grouped Tasks Widget is a solution to the Lodgify FE Technical Challenge. The widget is designed to display the progress of a user's profile creation. Users can view tasks grouped into categories and mark tasks as completed. As tasks are marked, the progress bar updates in real-time to reflect the user's progress.
 
+## Live Demo
+The widget is live and can be accessed at [https://lodgify-challenge.vercel.app/](https://lodgify-challenge.vercel.app/).
+
 ## Features
 
 1. **Progress Tracking**: The widget includes a progress bar that reflects the normalized value of completed tasks.
