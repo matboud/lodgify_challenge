@@ -69,7 +69,7 @@ const Accordion: FC<AccordionProps> = ({
             width={25}
             height={25}
             alt="Clipboard checklist"
-            className={`duration-100 ease-in-out ${isOpen && "-rotate-180"}`}
+            className={`duration-100 ease-in-out ${!isOpen && "-rotate-180"}`}
           />
         </div>
       </div>
