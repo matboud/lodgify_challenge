@@ -87,7 +87,7 @@ const Accordion: FC<AccordionProps> = ({
                 onChange={() => handleTask(id, index)}
               />
               <div className="pl-2">
-                {`${task.description} (${task.value})`}
+                {task.description}
               </div>
             </div>
           ))}
